@@ -3,8 +3,8 @@
 
 ---
 
-Model Link: _[here]()_
-Original Container Link: _[here](https://github.com/ashleykleynhans/llava-docker)_
+- Model Link: _[here](https://github.com/haotian-liu/llava)_
+- Original Docker Build Link: _[here](https://github.com/ashleykleynhans/llava-docker)_
 
 This repository is forked from [ashleykleynhans/llava-docker](https://github.com/ashleykleynhans/llava-docker) and reconfigured to run Flask on startup for serving an API with Runpod with a true One-Click-Template deployment.
 
