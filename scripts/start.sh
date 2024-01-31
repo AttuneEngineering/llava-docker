@@ -134,6 +134,26 @@ EOF
     fi
 }
 
+start_flask_server() {
+    echo "Starting Flask server..."
+    # Stop model worker and controller to free up VRAM
+    fuser -k 10000/tcp 40000/tcp
+
+    # Activate the virtual environment
+    source /workspace/venv/bin/activate
+
+    # Navigate to the LLaVA directory
+    cd /workspace/LLaVA
+
+    # Set environment variable for Hugging Face cache
+    export HF_HOME="/workspace"
+
+    # Start the Flask server
+    nohup python -m llava.serve.api -H 0.0.0.0 -p 5000 &> /workspace/logs/flask.log &
+    echo "Flask server started"
+}
+
+
 # ---------------------------------------------------------------------------- #
 #                               Main Program                                   #
 # ---------------------------------------------------------------------------- #
@@ -147,4 +167,5 @@ start_jupyter
 export_env_vars
 execute_script "/post_start.sh" "Running post-start script..."
 echo "Container is READY!"
+start_flask_server
 sleep infinity
